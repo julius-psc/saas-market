@@ -118,7 +118,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 flex-shrink-0">
           <div>
-            <h2 className="font-semibold text-gray-900">Find Contacts via Apollo</h2>
+            <h2 className="font-semibold text-gray-900">Find Contacts via Apify</h2>
             <p className="text-xs text-gray-400 mt-0.5">
               {niche.icon} {niche.name} · Founders, CEOs, Ops leads & more
             </p>
@@ -152,7 +152,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
                 disabled={state === 'loading' || state === 'saving'}
                 className="px-5 py-2 rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white transition-colors whitespace-nowrap"
               >
-                {state === 'loading' ? 'Searching…' : 'Search Apollo'}
+                {state === 'loading' ? 'Searching…' : 'Search Apify'}
               </button>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
                 </svg>
               </div>
               <p className="text-sm text-gray-500">
-                Click <span className="font-medium text-gray-700">Search Apollo</span> to find relevant contacts
+                Click <span className="font-medium text-gray-700">Search Apify</span> to find relevant contacts
                 <br />in the <span className="font-medium text-gray-700">{niche.name}</span> vertical.
               </p>
             </div>
@@ -177,7 +177,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
           {state === 'loading' && (
             <div className="text-center py-12">
               <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-sm text-gray-400">Searching Apollo.io…</p>
+              <p className="text-sm text-gray-400">Searching Apify…</p>
             </div>
           )}
 
@@ -211,11 +211,10 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
               {contacts.map((contact) => (
                 <label
                   key={contact.id}
-                  className={`flex items-start gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${
-                    selected.has(contact.id)
+                  className={`flex items-start gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${selected.has(contact.id)
                       ? 'border-indigo-200 bg-indigo-50'
                       : 'border-gray-200 bg-white hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   <input
                     type="checkbox"
@@ -296,8 +295,8 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
                 {state === 'saving'
                   ? 'Adding…'
                   : selectedCount === 0
-                  ? 'Select contacts'
-                  : `Add ${selectedCount} to Outreach`}
+                    ? 'Select contacts'
+                    : `Add ${selectedCount} to Outreach`}
               </button>
             </div>
           </div>
