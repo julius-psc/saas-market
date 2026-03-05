@@ -70,3 +70,13 @@ export const PAIN_POINT_CATEGORIES = [
 ] as const
 
 export type PainPointCategory = (typeof PAIN_POINT_CATEGORIES)[number]
+
+export interface ApolloContact {
+  id: string
+  name: string
+  title: string
+  company: string
+  email: string | null
+  linkedinUrl: string | null
+  location: string | null
+}

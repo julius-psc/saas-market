@@ -10,6 +10,7 @@ import ResponseCard from '@/components/ResponseCard'
 import SignalBar from '@/components/SignalBar'
 import PainPointBadge from '@/components/PainPointBadge'
 import StatCard from '@/components/StatCard'
+import ApolloContactsModal from '@/components/ApolloContactsModal'
 
 interface Props {
   niche: Niche
@@ -21,6 +22,7 @@ interface Props {
 export default function NicheDetailClient({ niche, initialStats, initialOutreach, initialResponses }: Props) {
   const [showOutreachModal, setShowOutreachModal] = useState(false)
   const [showResponseModal, setShowResponseModal] = useState(false)
+  const [showApolloModal, setShowApolloModal] = useState(false)
   const [outreach, setOutreach] = useState<Outreach[]>(initialOutreach)
   const [responses, setResponses] = useState<Response[]>(initialResponses)
   const [stats, setStats] = useState<NicheStats>(initialStats)
@@ -74,7 +76,16 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
           </div>
           <p className="text-sm text-gray-500">{niche.description}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => setShowApolloModal(true)}
+            className="px-4 py-2 rounded-lg text-sm font-medium bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 border border-gray-200 transition-colors flex items-center gap-1.5"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Find Contacts
+          </button>
           <button
             onClick={() => setShowOutreachModal(true)}
             className="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 border border-gray-200 transition-colors"
@@ -278,6 +289,13 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
       </div>
 
       {/* Modals */}
+      {showApolloModal && (
+        <ApolloContactsModal
+          niche={niche}
+          onClose={() => setShowApolloModal(false)}
+          onSaved={refresh}
+        />
+      )}
       {showOutreachModal && (
         <LogOutreachModal
           niche={niche}

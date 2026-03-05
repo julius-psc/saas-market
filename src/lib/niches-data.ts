@@ -703,6 +703,43 @@ Appreciate any candid insight.`,
   },
 ]
 
+export const NICHE_APOLLO_KEYWORDS: Record<string, string[]> = {
+  trades: ['plumbing', 'electrical contractor', 'hvac', 'trade services', 'field service'],
+  legal: ['law firm', 'legal services', 'attorney', 'solicitor', 'law practice'],
+  recruitment: ['staffing agency', 'recruitment', 'executive search', 'talent acquisition'],
+  'property-management': ['property management', 'real estate management', 'residential property'],
+  accounting: ['accounting', 'bookkeeping', 'CPA firm', 'chartered accountant'],
+  logistics: ['logistics', 'courier', 'freight', 'last mile delivery', 'transportation'],
+  insurance: ['insurance brokerage', 'insurance agency', 'insurance broker'],
+  'healthcare-admin': ['medical clinic', 'healthcare', 'allied health', 'outpatient clinic'],
+  education: ['tutoring', 'vocational training', 'training provider', 'private education'],
+  construction: ['general contractor', 'construction', 'subcontractor', 'building contractor'],
+  manufacturing: ['manufacturing', 'production facility', 'industrial manufacturing'],
+  'retail-ops': ['retail', 'omnichannel retail', 'brick and mortar retail'],
+  hospitality: ['hotel', 'restaurant', 'food and beverage', 'hospitality'],
+  'marketing-agencies': ['marketing agency', 'digital marketing', 'advertising agency'],
+  'financial-advisors': ['financial planning', 'wealth management', 'financial advisory'],
+  'event-management': ['event planning', 'event management', 'event production'],
+  'security-firms': ['security services', 'security guard', 'physical security'],
+  'cleaning-companies': ['cleaning services', 'commercial cleaning', 'janitorial services'],
+  'dental-medical': ['dental', 'dentistry', 'dental clinic', 'medical practice'],
+  'freight-customs': ['freight forwarding', 'customs broker', 'import export', 'trade compliance'],
+}
+
+export const APOLLO_DEFAULT_TITLES = [
+  'Founder',
+  'CEO',
+  'Chief Executive Officer',
+  'Owner',
+  'Managing Director',
+  'Director of Operations',
+  'Head of Operations',
+  'CTO',
+  'VP Product',
+  'General Manager',
+  'Operations Manager',
+]
+
 export function getNicheById(id: string): Niche | undefined {
   return NICHES.find((n) => n.id === id)
 }
