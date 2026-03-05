@@ -3,7 +3,10 @@ import path from 'path'
 import type { Outreach, Response } from './types'
 import { NICHES } from './niches-data'
 
-const DATA_DIR = path.join(process.cwd(), 'data')
+const DATA_DIR =
+  process.env.NODE_ENV === 'production'
+    ? path.join('/tmp', 'data')
+    : path.join(process.cwd(), 'data')
 const OUTREACH_FILE = path.join(DATA_DIR, 'outreach.json')
 const RESPONSES_FILE = path.join(DATA_DIR, 'responses.json')
 
