@@ -1,16 +1,16 @@
 const colorMap: Record<string, string> = {
-  'Time / Efficiency': 'bg-blue-900/50 text-blue-300 border-blue-800/50',
-  'Cost / Revenue': 'bg-emerald-900/50 text-emerald-300 border-emerald-800/50',
-  'Compliance / Legal': 'bg-red-900/50 text-red-300 border-red-800/50',
-  'Staff / HR': 'bg-purple-900/50 text-purple-300 border-purple-800/50',
-  'Technology / Integration': 'bg-cyan-900/50 text-cyan-300 border-cyan-800/50',
-  'Customer Management': 'bg-pink-900/50 text-pink-300 border-pink-800/50',
-  'Reporting / Analytics': 'bg-indigo-900/50 text-indigo-300 border-indigo-800/50',
-  'Communication': 'bg-teal-900/50 text-teal-300 border-teal-800/50',
-  'Scheduling / Booking': 'bg-orange-900/50 text-orange-300 border-orange-800/50',
-  'Cash Flow': 'bg-yellow-900/50 text-yellow-300 border-yellow-800/50',
-  'Admin Overload': 'bg-rose-900/50 text-rose-300 border-rose-800/50',
-  'Other': 'bg-slate-800 text-slate-400 border-slate-700',
+  'Time / Efficiency': 'bg-blue-50 text-blue-700 border-blue-200',
+  'Cost / Revenue': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'Compliance / Legal': 'bg-red-50 text-red-700 border-red-200',
+  'Staff / HR': 'bg-purple-50 text-purple-700 border-purple-200',
+  'Technology / Integration': 'bg-cyan-50 text-cyan-700 border-cyan-200',
+  'Customer Management': 'bg-pink-50 text-pink-700 border-pink-200',
+  'Reporting / Analytics': 'bg-indigo-50 text-indigo-700 border-indigo-200',
+  'Communication': 'bg-teal-50 text-teal-700 border-teal-200',
+  'Scheduling / Booking': 'bg-orange-50 text-orange-700 border-orange-200',
+  'Cash Flow': 'bg-yellow-50 text-yellow-700 border-yellow-200',
+  'Admin Overload': 'bg-rose-50 text-rose-700 border-rose-200',
+  'Other': 'bg-gray-100 text-gray-600 border-gray-200',
 }
 
 interface PainPointBadgeProps {

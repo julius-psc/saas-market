@@ -7,7 +7,7 @@ function scoreColor(score: number): string {
   if (score >= 70) return 'bg-emerald-500'
   if (score >= 40) return 'bg-amber-500'
   if (score >= 15) return 'bg-orange-500'
-  return 'bg-slate-600'
+  return 'bg-gray-300'
 }
 
 function scoreLabel(score: number): string {
@@ -24,7 +24,7 @@ export default function SignalBar({ score, size = 'md' }: SignalBarProps) {
 
   return (
     <div className="w-full">
-      <div className={`w-full ${h} bg-slate-800 rounded-full overflow-hidden`}>
+      <div className={`w-full ${h} bg-gray-200 rounded-full overflow-hidden`}>
         <div
           className={`${h} ${color} rounded-full transition-all duration-500`}
           style={{ width: `${Math.max(score, 2)}%` }}
@@ -32,8 +32,8 @@ export default function SignalBar({ score, size = 'md' }: SignalBarProps) {
       </div>
       {size === 'md' && (
         <div className="flex justify-between mt-1">
-          <span className="text-xs text-slate-500">{label}</span>
-          <span className="text-xs font-medium text-slate-400">{score}/100</span>
+          <span className="text-xs text-gray-400">{label}</span>
+          <span className="text-xs font-medium text-gray-600">{score}/100</span>
         </div>
       )}
     </div>

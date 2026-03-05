@@ -53,13 +53,13 @@ export default function LogOutreachModal({ niche, onClose, onSaved }: LogOutreac
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-md bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+      <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 shadow-2xl">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <div>
-            <h2 className="font-semibold text-slate-100">Log Outreach</h2>
-            <p className="text-xs text-slate-500 mt-0.5">{niche.icon} {niche.name}</p>
+            <h2 className="font-semibold text-gray-900">Log Outreach</h2>
+            <p className="text-xs text-gray-400 mt-0.5">{niche.icon} {niche.name}</p>
           </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-slate-300 transition-colors">
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -69,44 +69,44 @@ export default function LogOutreachModal({ niche, onClose, onSaved }: LogOutreac
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Contact Name *</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Contact Name *</label>
               <input
                 type="text"
                 value={form.contactName}
                 onChange={(e) => setForm({ ...form, contactName: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
                 placeholder="Jane Smith"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Company *</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Company *</label>
               <input
                 type="text"
                 value={form.contactCompany}
                 onChange={(e) => setForm({ ...form, contactCompany: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
                 placeholder="Acme Trades"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Job Title</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Job Title</label>
             <input
               type="text"
               value={form.contactTitle}
               onChange={(e) => setForm({ ...form, contactTitle: e.target.value })}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
               placeholder="Owner / Operations Manager"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Channel *</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Channel *</label>
             <select
               value={form.channel}
               onChange={(e) => setForm({ ...form, channel: e.target.value as TemplateType })}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 focus:outline-none focus:border-indigo-600"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:border-indigo-500"
             >
               {channelOptions.map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -115,11 +115,11 @@ export default function LogOutreachModal({ niche, onClose, onSaved }: LogOutreac
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Template Used</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Template Used</label>
             <select
               value={form.templateId}
               onChange={(e) => setForm({ ...form, templateId: e.target.value })}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 focus:outline-none focus:border-indigo-600"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:border-indigo-500"
             >
               <option value="">— none / custom —</option>
               {niche.templates.map((t) => (
@@ -131,23 +131,23 @@ export default function LogOutreachModal({ niche, onClose, onSaved }: LogOutreac
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Notes</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Notes</label>
             <textarea
               value={form.notes}
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={2}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600 resize-none"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 resize-none"
               placeholder="Any context..."
             />
           </div>
 
-          {error && <p className="text-xs text-red-400">{error}</p>}
+          {error && <p className="text-xs text-red-500">{error}</p>}
 
           <div className="flex gap-3 pt-1">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              className="flex-1 px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
             >
               Cancel
             </button>

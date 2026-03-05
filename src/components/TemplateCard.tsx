@@ -41,18 +41,18 @@ export default function TemplateCard({ template, contactName = '{{name}}', conta
   }
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900 overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/80">
+    <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50">
         <div className="flex items-center gap-2">
           <span className="text-base">{typeIcons[template.type]}</span>
-          <span className="text-sm font-medium text-slate-300">{typeLabels[template.type]}</span>
+          <span className="text-sm font-medium text-gray-700">{typeLabels[template.type]}</span>
         </div>
         <button
           onClick={handleCopy}
           className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium transition-colors ${
             copied
-              ? 'bg-emerald-900/50 text-emerald-400 border border-emerald-800/50'
-              : 'bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 border border-slate-700'
+              ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
+              : 'bg-white hover:bg-gray-100 text-gray-500 hover:text-gray-700 border border-gray-200'
           }`}
         >
           {copied ? (
@@ -75,12 +75,12 @@ export default function TemplateCard({ template, contactName = '{{name}}', conta
 
       <div className="p-4">
         {filledSubject && (
-          <p className="text-xs text-slate-500 mb-2">
-            <span className="font-medium text-slate-400">Subject: </span>
+          <p className="text-xs text-gray-400 mb-2">
+            <span className="font-medium text-gray-500">Subject: </span>
             {filledSubject}
           </p>
         )}
-        <p className="text-sm text-slate-400 whitespace-pre-wrap leading-relaxed">{filled}</p>
+        <p className="text-sm text-gray-600 whitespace-pre-wrap leading-relaxed">{filled}</p>
       </div>
     </div>
   )

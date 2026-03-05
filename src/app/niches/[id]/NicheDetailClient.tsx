@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import type { Niche, Outreach, Response } from '@/lib/types'
 import type { NicheStats } from '@/lib/db'
 import TemplateCard from '@/components/TemplateCard'
@@ -20,7 +19,6 @@ interface Props {
 }
 
 export default function NicheDetailClient({ niche, initialStats, initialOutreach, initialResponses }: Props) {
-  const router = useRouter()
   const [showOutreachModal, setShowOutreachModal] = useState(false)
   const [showResponseModal, setShowResponseModal] = useState(false)
   const [outreach, setOutreach] = useState<Outreach[]>(initialOutreach)
@@ -59,7 +57,7 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
       {/* Back */}
       <a
         href="/"
-        className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-300 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-600 transition-colors"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -72,14 +70,14 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
         <div>
           <div className="flex items-center gap-3 mb-1">
             <span className="text-3xl">{niche.icon}</span>
-            <h1 className="text-2xl font-bold text-slate-100">{niche.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{niche.name}</h1>
           </div>
-          <p className="text-sm text-slate-500">{niche.description}</p>
+          <p className="text-sm text-gray-500">{niche.description}</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setShowOutreachModal(true)}
-            className="px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-slate-100 border border-slate-700 transition-colors"
+            className="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 border border-gray-200 transition-colors"
           >
             + Log Outreach
           </button>
@@ -101,17 +99,17 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
       </div>
 
       {/* Signal bar */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
+      <div className="rounded-xl border border-gray-200 bg-white p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-medium text-slate-400">Signal Score</p>
-          <p className="text-xs text-slate-600">
+          <p className="text-sm font-medium text-gray-600">Signal Score</p>
+          <p className="text-xs text-gray-400">
             Based on response rate + pain point variety
           </p>
         </div>
         <SignalBar score={stats.signalScore} />
         {painPointsSorted.length > 0 && (
           <div className="mt-4">
-            <p className="text-xs text-slate-500 mb-2">Pain points mentioned</p>
+            <p className="text-xs text-gray-400 mb-2">Pain points mentioned</p>
             <div className="flex flex-wrap gap-1.5">
               {painPointsSorted.map(([pp, count]) => (
                 <PainPointBadge key={pp} category={pp} count={count} />
@@ -122,8 +120,8 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
       </div>
 
       {/* Template personaliser */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
-        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-3">
+      <div className="rounded-xl border border-gray-200 bg-white p-4">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
           Personalise Templates
         </p>
         <div className="flex gap-3">
@@ -132,21 +130,21 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
             value={templateContact.name}
             onChange={(e) => setTemplateContact({ ...templateContact, name: e.target.value })}
             placeholder="Contact name"
-            className="flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+            className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
           />
           <input
             type="text"
             value={templateContact.company}
             onChange={(e) => setTemplateContact({ ...templateContact, company: e.target.value })}
             placeholder="Company name"
-            className="flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+            className="flex-1 px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
           />
         </div>
       </div>
 
       {/* Tabs */}
       <div>
-        <div className="flex gap-0 border border-slate-800 rounded-lg p-0.5 bg-slate-900 w-fit">
+        <div className="flex gap-0 border border-gray-200 rounded-lg p-0.5 bg-gray-50 w-fit">
           {(['templates', 'outreach', 'responses'] as const).map((tab) => (
             <button
               key={tab}
@@ -154,7 +152,7 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
               className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors capitalize ${
                 activeTab === tab
                   ? 'bg-indigo-600 text-white'
-                  : 'text-slate-500 hover:text-slate-300'
+                  : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               {tab}
@@ -187,8 +185,8 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
           {activeTab === 'outreach' && (
             <div>
               {outreach.length === 0 ? (
-                <div className="rounded-xl border border-slate-800 bg-slate-900 p-8 text-center">
-                  <p className="text-sm text-slate-500">No outreach logged yet.</p>
+                <div className="rounded-xl border border-gray-200 bg-white p-8 text-center">
+                  <p className="text-sm text-gray-400">No outreach logged yet.</p>
                   <button
                     onClick={() => setShowOutreachModal(true)}
                     className="mt-3 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
@@ -204,36 +202,36 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
                     .map((o) => (
                       <div
                         key={o.id}
-                        className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 gap-3"
+                        className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 gap-3"
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="text-sm font-medium text-slate-200">{o.contactName}</span>
-                            <span className="text-slate-600 text-xs">·</span>
-                            <span className="text-xs text-slate-400">{o.contactCompany}</span>
+                            <span className="text-sm font-medium text-gray-800">{o.contactName}</span>
+                            <span className="text-gray-300 text-xs">·</span>
+                            <span className="text-xs text-gray-500">{o.contactCompany}</span>
                             {o.contactTitle && (
                               <>
-                                <span className="text-slate-600 text-xs">·</span>
-                                <span className="text-xs text-slate-500">{o.contactTitle}</span>
+                                <span className="text-gray-300 text-xs">·</span>
+                                <span className="text-xs text-gray-400">{o.contactTitle}</span>
                               </>
                             )}
                           </div>
                           <div className="flex items-center gap-2 mt-1">
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500">
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-500">
                               {channelLabel[o.channel] ?? o.channel}
                             </span>
-                            <span className="text-[10px] text-slate-600">
+                            <span className="text-[10px] text-gray-400">
                               {new Date(o.sentAt).toLocaleDateString('en-AU', {
                                 day: 'numeric', month: 'short', year: 'numeric',
                               })}
                             </span>
                           </div>
-                          {o.notes && <p className="text-xs text-slate-600 mt-1 italic">{o.notes}</p>}
+                          {o.notes && <p className="text-xs text-gray-400 mt-1 italic">{o.notes}</p>}
                         </div>
                         <button
                           onClick={() => handleDeleteOutreach(o.id)}
                           disabled={deletingOutreach === o.id}
-                          className="text-slate-700 hover:text-red-400 transition-colors disabled:opacity-50 flex-shrink-0"
+                          className="text-gray-300 hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
                           aria-label="Delete"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,8 +249,8 @@ export default function NicheDetailClient({ niche, initialStats, initialOutreach
           {activeTab === 'responses' && (
             <div>
               {responses.length === 0 ? (
-                <div className="rounded-xl border border-slate-800 bg-slate-900 p-8 text-center">
-                  <p className="text-sm text-slate-500">No responses logged yet.</p>
+                <div className="rounded-xl border border-gray-200 bg-white p-8 text-center">
+                  <p className="text-sm text-gray-400">No responses logged yet.</p>
                   <button
                     onClick={() => setShowResponseModal(true)}
                     className="mt-3 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"

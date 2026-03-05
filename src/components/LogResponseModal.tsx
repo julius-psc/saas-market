@@ -12,9 +12,9 @@ interface LogResponseModalProps {
 }
 
 const sentimentOptions: { value: Sentiment; label: string; color: string }[] = [
-  { value: 'positive', label: 'Positive', color: 'bg-emerald-900/50 border-emerald-700 text-emerald-300' },
-  { value: 'neutral', label: 'Neutral', color: 'bg-slate-800 border-slate-700 text-slate-300' },
-  { value: 'negative', label: 'Negative', color: 'bg-red-900/50 border-red-800 text-red-300' },
+  { value: 'positive', label: 'Positive', color: 'bg-emerald-50 border-emerald-300 text-emerald-700' },
+  { value: 'neutral', label: 'Neutral', color: 'bg-gray-100 border-gray-300 text-gray-700' },
+  { value: 'negative', label: 'Negative', color: 'bg-red-50 border-red-300 text-red-700' },
 ]
 
 export default function LogResponseModal({ niche, onClose, onSaved }: LogResponseModalProps) {
@@ -66,13 +66,13 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="w-full max-w-lg bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 sticky top-0 bg-slate-900 z-10">
+      <div className="w-full max-w-lg bg-white rounded-2xl border border-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
           <div>
-            <h2 className="font-semibold text-slate-100">Log Response</h2>
-            <p className="text-xs text-slate-500 mt-0.5">{niche.icon} {niche.name}</p>
+            <h2 className="font-semibold text-gray-900">Log Response</h2>
+            <p className="text-xs text-gray-400 mt-0.5">{niche.icon} {niche.name}</p>
           </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-slate-300 transition-colors">
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -82,51 +82,51 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Contact Name *</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Contact Name *</label>
               <input
                 type="text"
                 value={form.contactName}
                 onChange={(e) => setForm({ ...form, contactName: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
                 placeholder="Jane Smith"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">Company *</label>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Company *</label>
               <input
                 type="text"
                 value={form.contactCompany}
                 onChange={(e) => setForm({ ...form, contactCompany: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
                 placeholder="Acme Co"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Job Title</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Job Title</label>
             <input
               type="text"
               value={form.contactTitle}
               onChange={(e) => setForm({ ...form, contactTitle: e.target.value })}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500"
               placeholder="Owner / Manager"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Response Text *</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Response Text *</label>
             <textarea
               value={form.responseText}
               onChange={(e) => setForm({ ...form, responseText: e.target.value })}
               rows={4}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600 resize-none"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 resize-none"
               placeholder="Paste or summarise what they said..."
             />
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-2">Sentiment</label>
+            <label className="block text-xs font-medium text-gray-600 mb-2">Sentiment</label>
             <div className="flex gap-2">
               {sentimentOptions.map((s) => (
                 <button
@@ -136,7 +136,7 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
                   className={`flex-1 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                     form.sentiment === s.value
                       ? s.color
-                      : 'bg-slate-800/50 border-slate-800 text-slate-500 hover:border-slate-700'
+                      : 'bg-gray-50 border-gray-200 text-gray-400 hover:border-gray-300'
                   }`}
                 >
                   {s.label}
@@ -146,9 +146,9 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-2">
+            <label className="block text-xs font-medium text-gray-600 mb-2">
               Pain Point Categories
-              <span className="ml-1 text-slate-600">(select all that apply)</span>
+              <span className="ml-1 text-gray-400">(select all that apply)</span>
             </label>
             <div className="flex flex-wrap gap-1.5">
               {PAIN_POINT_CATEGORIES.map((pp) => (
@@ -158,8 +158,8 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
                   onClick={() => togglePainPoint(pp)}
                   className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-all ${
                     selectedPainPoints.includes(pp)
-                      ? 'bg-indigo-900/60 border-indigo-700 text-indigo-300'
-                      : 'bg-slate-800/60 border-slate-700 text-slate-500 hover:border-slate-600 hover:text-slate-400'
+                      ? 'bg-indigo-50 border-indigo-300 text-indigo-600'
+                      : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-600'
                   }`}
                 >
                   {pp}
@@ -181,23 +181,23 @@ export default function LogResponseModal({ niche, onClose, onSaved }: LogRespons
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1">Internal Notes</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Internal Notes</label>
             <textarea
               value={form.notes}
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={2}
-              className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-indigo-600 resize-none"
+              className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-indigo-500 resize-none"
               placeholder="Your own observations or follow-up actions..."
             />
           </div>
 
-          {error && <p className="text-xs text-red-400">{error}</p>}
+          {error && <p className="text-xs text-red-500">{error}</p>}
 
           <div className="flex gap-3 pt-1">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 rounded-lg text-sm font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
+              className="flex-1 px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
             >
               Cancel
             </button>

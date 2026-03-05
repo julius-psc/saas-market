@@ -10,9 +10,9 @@ interface ResponseCardProps {
 }
 
 const sentimentConfig = {
-  positive: { label: 'Positive', cls: 'text-emerald-400 bg-emerald-900/30 border-emerald-900' },
-  neutral: { label: 'Neutral', cls: 'text-slate-400 bg-slate-800 border-slate-700' },
-  negative: { label: 'Negative', cls: 'text-red-400 bg-red-900/30 border-red-900' },
+  positive: { label: 'Positive', cls: 'text-emerald-600 bg-emerald-50 border-emerald-200' },
+  neutral: { label: 'Neutral', cls: 'text-gray-500 bg-gray-100 border-gray-200' },
+  negative: { label: 'Negative', cls: 'text-red-600 bg-red-50 border-red-200' },
 }
 
 export default function ResponseCard({ response, onDeleted }: ResponseCardProps) {
@@ -34,21 +34,21 @@ export default function ResponseCard({ response, onDeleted }: ResponseCardProps)
   const truncated = response.responseText.length > 200 && !expanded
 
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900 p-4 space-y-3">
+    <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3">
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-sm font-medium text-slate-200">{response.contactName}</span>
-            <span className="text-slate-600 text-xs">·</span>
-            <span className="text-xs text-slate-400">{response.contactCompany}</span>
+            <span className="text-sm font-medium text-gray-800">{response.contactName}</span>
+            <span className="text-gray-300 text-xs">·</span>
+            <span className="text-xs text-gray-500">{response.contactCompany}</span>
             {response.contactTitle && (
               <>
-                <span className="text-slate-600 text-xs">·</span>
-                <span className="text-xs text-slate-500">{response.contactTitle}</span>
+                <span className="text-gray-300 text-xs">·</span>
+                <span className="text-xs text-gray-400">{response.contactTitle}</span>
               </>
             )}
           </div>
-          <p className="text-[10px] text-slate-600 mt-0.5">
+          <p className="text-[10px] text-gray-300 mt-0.5">
             {new Date(response.receivedAt).toLocaleDateString('en-AU', {
               day: 'numeric', month: 'short', year: 'numeric',
             })}
@@ -61,7 +61,7 @@ export default function ResponseCard({ response, onDeleted }: ResponseCardProps)
           <button
             onClick={handleDelete}
             disabled={deleting}
-            className="text-slate-700 hover:text-red-400 transition-colors disabled:opacity-50"
+            className="text-gray-300 hover:text-red-500 transition-colors disabled:opacity-50"
             aria-label="Delete response"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,13 +72,13 @@ export default function ResponseCard({ response, onDeleted }: ResponseCardProps)
       </div>
 
       <div>
-        <p className="text-sm text-slate-400 leading-relaxed">
+        <p className="text-sm text-gray-600 leading-relaxed">
           {truncated ? response.responseText.slice(0, 200) + '…' : response.responseText}
         </p>
         {response.responseText.length > 200 && (
           <button
             onClick={() => setExpanded(!expanded)}
-            className="text-xs text-indigo-500 hover:text-indigo-400 mt-1 transition-colors"
+            className="text-xs text-indigo-600 hover:text-indigo-700 mt-1 transition-colors"
           >
             {expanded ? 'Show less' : 'Show more'}
           </button>
@@ -94,7 +94,7 @@ export default function ResponseCard({ response, onDeleted }: ResponseCardProps)
       )}
 
       {response.notes && (
-        <p className="text-xs text-slate-600 italic border-t border-slate-800 pt-2 mt-2">
+        <p className="text-xs text-gray-400 italic border-t border-gray-100 pt-2 mt-2">
           {response.notes}
         </p>
       )}
