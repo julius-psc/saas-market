@@ -9,8 +9,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'APIFY_API_TOKEN is not configured.' }, { status: 500 })
   }
 
-  const body = await req.json() as { nicheId?: string; titles?: string[]; limit?: number }
-  const { nicheId, titles, limit = 10 } = body
+  const body = await req.json() as { nicheId?: string; titles?: string[]; limit?: number; region?: string }
+  const { nicheId, titles, limit = 10, region } = body
 
   if (!nicheId) {
     return NextResponse.json({ error: 'nicheId is required.' }, { status: 400 })
@@ -27,7 +27,17 @@ export async function POST(req: Request) {
   // e.g. site:linkedin.com/in/ ("plumbing" OR "hvac") ("Founder" OR "CEO")
   const keywordsStr = keywords.map(k => `"${k}"`).join(' OR ')
   const titlesStr = personTitles.map(t => `"${t}"`).join(' OR ')
-  const query = `site:linkedin.com/in/ AND (${keywordsStr}) AND (${titlesStr})`
+  let query = `site:linkedin.com/in/ AND (${keywordsStr}) AND (${titlesStr})`
+
+  if (region === 'eu-uk') {
+    const locations = ["UK", "United Kingdom", "Europe", "London", "France", "Germany", "Spain", "Italy", "Netherlands", "Ireland", "Sweden", "Switzerland", "Belgium", "Austria"]
+    const locStr = locations.map(l => `"${l}"`).join(' OR ')
+    query += ` AND (${locStr})`
+  } else if (region === 'us-ca') {
+    const locations = ["United States", "US", "USA", "Canada", "New York", "California", "Texas", "Florida", "Ontario"]
+    const locStr = locations.map(l => `"${l}"`).join(' OR ')
+    query += ` AND (${locStr})`
+  }
 
   const client = new ApifyClient({ token: apiKey })
 
@@ -50,27 +60,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ contacts: [] })
     }
 
-    // 2. Scrape Profiles
-    const profileRun = await client.actor('dev_fusion/Linkedin-Profile-Scraper').call({
-      urls,
-      skipInstructions: true
-    })
+    // Since 'dev_fusion/Linkedin-Profile-Scraper' is blocked on the free Apify tier,
+    // we extract contact data directly from the Google Search results.
+    const contacts: ApolloContact[] = searchItems[0].organicResults.slice(0, limit).map((r: any) => {
+      // e.g. "James Leekman - Founder at Plumbing and HVAC" -> Name is usually before the first "-" or "|"
+      const titleParts = r.title.split(/ [-|] /)
+      const nameGuess = titleParts[0].trim() || 'Unknown'
 
-    const { items: profileItems } = await client.dataset(profileRun.defaultDatasetId).listItems() as { items: any[] }
-
-    const contacts: ApolloContact[] = profileItems.map((p: any) => {
-      const location = [p.city, p.state, p.country].filter(Boolean).join(', ')
-      const emailObj = p.emails && p.emails.length > 0 ? p.emails[0] : null
-      const emailStr = emailObj ? (typeof emailObj === 'string' ? emailObj : emailObj.email) : null
+      const pInfo = r.personalInfo || {}
 
       return {
-        id: p.linkedinUrl || String(Math.random()),
-        name: `${p.firstName || ''} ${p.lastName || ''}`.trim() || p.fullName || 'Unknown',
-        title: p.headline || p.title || '',
-        company: p.company || '',
-        email: emailStr || null,
-        linkedinUrl: p.linkedinUrl || null,
-        location: location || null,
+        id: r.url || String(Math.random()),
+        name: nameGuess,
+        title: pInfo.jobTitle || titleParts.slice(1).join(' - ') || '',
+        company: pInfo.companyName || '',
+        email: null, // Scraper doesn't provide email
+        linkedinUrl: r.url || null,
+        location: pInfo.location || null,
       }
     })
 

@@ -23,6 +23,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [channel, setChannel] = useState<TemplateType>('linkedin_connect')
   const [limit, setLimit] = useState(25)
+  const [region, setRegion] = useState('global')
   const [errorMessage, setErrorMessage] = useState('')
 
   async function handleSearch() {
@@ -35,7 +36,7 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
       const res = await fetch('/api/apollo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nicheId: niche.id, limit }),
+        body: JSON.stringify({ nicheId: niche.id, limit, region: region === 'global' ? undefined : region }),
       })
       const data = await res.json() as { contacts?: ApolloContact[]; error?: string }
       if (!res.ok) {
@@ -146,6 +147,19 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
                 <option value={50}>50 contacts</option>
               </select>
             </div>
+            <div className="flex-1">
+              <label className="block text-xs font-medium text-gray-500 mb-1">Region</label>
+              <select
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                disabled={state === 'loading' || state === 'saving'}
+                className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:border-indigo-500 disabled:opacity-50"
+              >
+                <option value="global">Global</option>
+                <option value="eu-uk">Europe & UK</option>
+                <option value="us-ca">US & Canada</option>
+              </select>
+            </div>
             <div className="pt-5">
               <button
                 onClick={handleSearch}
@@ -212,8 +226,8 @@ export default function ApolloContactsModal({ niche, onClose, onSaved }: Props) 
                 <label
                   key={contact.id}
                   className={`flex items-start gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${selected.has(contact.id)
-                      ? 'border-indigo-200 bg-indigo-50'
-                      : 'border-gray-200 bg-white hover:border-gray-300'
+                    ? 'border-indigo-200 bg-indigo-50'
+                    : 'border-gray-200 bg-white hover:border-gray-300'
                     }`}
                 >
                   <input
